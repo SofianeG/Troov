@@ -1,0 +1,56 @@
+.container_register {
+  display: flex;
+  justify-content: center;
+  margin-top: 53px;
+}
+
+.wrapper_register {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-bottom: 28px;
+  align-items: center;
+  width: 579px;
+  height: 737px;
+  width: 579px;
+  box-shadow: 1px 3px 3px 3px rgba(216, 216, 216, 0.5);
+  box-sizing: border-box;
+}
+
+.text_create_account_register {
+  font-size: 22px;
+  font-family: Montserrat SemiBold;
+}
+
+.circle_icon_profile_register {
+  background-color: grey;
+  border-radius: 50px;
+  width: 99px;
+  height: 99px;
+}
+.text_add_picture_register {
+  color: #0091ff;
+  font-size: 14px;
+  line-height: 19px;
+  font-family: Open Sans Regular;
+}
+.forms_register {
+  display: flex;
+}
+
+.input_register {
+  width: 344px;
+  height: 42px;
+  padding-left: 12px;
+}
+
+.input_register::placeholder {
+  color: #9a9999;
+  font-family: Open Sans Regular;
+}
+.text_atleast8_register {
+  font-size: 10px;
+}
+.text_you_are_register {
+  font-size: 12px;
+}
