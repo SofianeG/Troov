@@ -1,0 +1,34 @@
+.wrapper_google_btnlogin {
+  display: flex;
+  flex-direction: row;
+  border: solid 1px #d4d4d4;
+  border-radius: 26px;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+.wrapper_facebook_btnlogin {
+  display: flex;
+  flex-direction: row;
+  border: solid 1px #d4d4d4;
+  border-radius: 26px;
+  align-items: center;
+  justify-content: center;
+  background-color: #4b74ff;
+  margin-bottom: 21px;
+  cursor: pointer;
+}
+
+.text_google_btnlogin {
+  font-size: 11px;
+  color: #6d7278;
+  margin-left: 25px;
+}
+
+.text_facebook_btnlogin {
+  font-size: 11px;
+  color: white;
+  margin-left: 22px;
+}
