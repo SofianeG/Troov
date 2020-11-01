@@ -1,0 +1,15 @@
+.container_btnfinish {
+  background-color: #0091ff;
+  border-radius: 26px;
+  width: 252px;
+  height: 42px;
+  cursor: pointer;
+}
+.text_btnfinish {
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* font-family: Open Sans Regular; */
+}

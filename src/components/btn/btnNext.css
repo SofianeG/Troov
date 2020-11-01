@@ -1,0 +1,13 @@
+.container_btnnext {
+  background-color: #0091ff;
+  border-radius: 26px;
+  cursor: pointer;
+}
+.text_btnnext {
+  color: white;
+  font-size: 11px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
