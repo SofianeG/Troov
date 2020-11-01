@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const registerApi = async (
+export const registerApi = (
   email,
   password,
   firstName,
@@ -8,15 +8,13 @@ export const registerApi = async (
   female,
   callback
 ) => {
-  await axios({
+  axios({
     method: "POST",
     url: "http://localhost:5000/user/register",
     data: { email, password, firstName, lastName, female },
   })
     .then((res) => {
-      console.log(res, "result register api ");
-      localStorage.setItem("userId", res.data.userData._id);
-      localStorage.setItem("userName", res.data.userData.firstName);
+      localStorage.setItem("userId", res?.data?.userData?._id);
       callback();
     })
     .catch((err) => {
@@ -32,9 +30,6 @@ export const loginApi = (email, password, callback) => {
   })
     .then((res) => {
       console.log(res, "---res login api----");
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userId", res.data._id);
-      localStorage.setItem("userName", res.data.firstName);
       callback();
     })
     .catch((err) => {

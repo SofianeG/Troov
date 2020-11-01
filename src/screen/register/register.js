@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import Header from "../../component/header/Header";
-import "./Register.css";
+import "./style.js";
 import BtnFinish from "../../component/btn/BtnFinish";
 import { registerApi } from "../../API";
+import useStyles from "./style";
+import { TextField, Button, Typography, Paper } from "@material-ui/core";
 
 export default function Register({ history }) {
+  const classes = useStyles();
+
   // STATE
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -21,46 +25,52 @@ export default function Register({ history }) {
   return (
     <>
       <Header />
-      <div className="container_register">
-        {console.log(female, "------female-----")}
-        <div className="wrapper_register">
-          <p className="text_create_account_register">Créez un compte</p>
-          <div className="circle_icon_profile_register"></div>
-          <p className="text_add_picture_register">Ajouter une photo</p>
-          <input
-            className="input_register"
-            type="text"
-            placeholder="Prénom"
-            style={{ marginBottom: 16 }}
+      <Paper className={classes.paper}>
+        <form
+          autoComplete="off"
+          noValidate
+          className={`${classes.root} ${classes.form}`}
+          onSubmit={handleRegister}
+        >
+          <Typography> CREER UN COMPTE </Typography>
+          <TextField
+            name="Prenom"
+            variant="outlined"
+            label="Prenom"
+            fullWidth
+            value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
-          <input
-            className="input_register"
-            type="text"
-            placeholder="Nom"
-            style={{ marginBottom: 16 }}
+          <TextField
+            name="Nom"
+            variant="outlined"
+            label="Nom"
+            fullWidth
+            value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
-          <input
-            className="input_register"
-            type="text"
-            placeholder="Email"
-            style={{ marginBottom: 16 }}
+          <TextField
+            name="email"
+            variant="outlined"
+            label="email"
+            fullWidth
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input
-            className="input_register"
-            type="text"
-            placeholder="Mot de passe"
+          <TextField
+            name="Mot de Passe"
+            variant="outlined"
+            label="Mot de Passe"
+            fullWidth
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <p className="text_atleast8_register">
-            Il doit contenir au moins 8 caractères.{" "}
-          </p>
-          <input
-            className="input_register"
-            type="text"
-            placeholder="Mot de passe"
+          <TextField
+            name="Confirmer Mot de Passe"
+            variant="outlined"
+            label="Confirmer Mot de Passe"
+            fullWidth
+            value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <p className="text_you_are_register">Vous êtes</p>
@@ -71,12 +81,22 @@ export default function Register({ history }) {
               e.target.value === "femme" ? setFemale(true) : setFemale(false);
             }}
           >
-            <option value="homme">Homme</option>
-            <option value="femme">Femme</option>
+            <option value="homme">un Homme</option>
+            <option value="femme">une Femme</option>
           </select>
-          <BtnFinish title="Terminer" onClick={() => handleRegister()} />
-        </div>
-      </div>
+          <Button
+            className={classes.buttonSubmit}
+            variant="contained"
+            color="primary"
+            size="large"
+            type="submit"
+            fullWidth
+            onClick={() => handleRegister()}
+          >
+            S'inscrire
+          </Button>
+        </form>
+      </Paper>
     </>
   );
 }

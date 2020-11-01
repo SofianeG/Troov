@@ -14,8 +14,7 @@ export default function Home({ history }) {
       url: "http://localhost:5000/movie/getmovie",
     })
       .then((res) => {
-        setMovie(res.data.movie);
-        console.log(res.data.movie, "result get movie ");
+        setMovie(res?.data?.movie);
       })
       .catch((err) => {
         console.log(err, "error onget movie");
@@ -42,8 +41,8 @@ export default function Home({ history }) {
       ?.filter((e) => {
         if (search === "") {
           return e;
-        } else if (e.title === search) {
-          return e.title == search;
+        } else if (e?.title === search) {
+          return e?.title === search;
         }
       })
       .map((film, index) => {

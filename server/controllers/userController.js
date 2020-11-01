@@ -19,14 +19,7 @@ app.use(express.json());
 const { JWT_SECRET_KEY } = process.env;
 
 exports.register = async (req, res) => {
-  const {
-    email,
-    password,
-    firstName,
-    lastName,
-    userPicture,
-    female,
-  } = req.body;
+  const { email, password, firstName, lastName, female } = req.body;
   try {
     if (!email || !password || !firstName || !lastName || !female) {
       console.log("you have to fill all input");
@@ -47,7 +40,6 @@ exports.register = async (req, res) => {
               password: hash,
               firstName,
               lastName,
-              userPicture,
               female,
             },
             (err, userData) => {
@@ -60,7 +52,6 @@ exports.register = async (req, res) => {
           );
         });
       } else {
-        console.log("user");
         res.status(400).json({
           error: "email or username already exist",
         });
@@ -118,7 +109,6 @@ var storage = multer.diskStorage({
     return cb(null, "./uploads");
   },
   filename: function (req, file, cb) {
-    console.log(file.originalname, "original name");
     return cb(null, Date.now() + "-" + file.originalname);
   },
   fileFilter: function (req, file, cb) {
@@ -145,7 +135,6 @@ exports.uploadCoverPhoto = (req, res) => {
         success: "false",
       });
     }
-    console.log(req.file, "file");
     return res.json({
       success: true,
       filePath: res.req.file.path,

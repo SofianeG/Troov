@@ -1,6 +1,22 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
-import "./CardMovie.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 545,
+    height: 300,
+  },
+  media: {
+    height: 140,
+  },
+});
 
 export default function CardMovie({
   title,
@@ -10,29 +26,38 @@ export default function CardMovie({
   deleteMovieProps,
   updateMovieProps,
 }) {
+  const classes = useStyles();
+
   return (
     <>
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={image} />
-        <Card.Body>
-          <Card.Title>{title}</Card.Title>
-          <Card.Text>{description}</Card.Text>
-          <Button href={`/movie/${id}`} variant="primary">
-            details de {title}
-          </Button>
-          <button
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia className={classes.media} image={image} title={title} />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button
+            size="small"
+            color="primary"
             onClick={() => deleteMovieProps(id)}
-            style={{ backgroundColor: "red", color: "white", marginLeft: 10 }}
           >
-            DELETE
-          </button>
-          <button
+            Delete
+          </Button>
+          <Button
+            size="small"
+            color="primary"
             onClick={() => updateMovieProps(id)}
-            style={{ backgroundColor: "white", color: "red", marginLeft: 10 }}
           >
-            UPDATE
-          </button>
-        </Card.Body>
+            Update
+          </Button>
+        </CardActions>
       </Card>
     </>
   );

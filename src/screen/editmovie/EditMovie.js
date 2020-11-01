@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./EditMovie.css";
+import useStyles from "./style";
 import axios from "axios";
 import { uploadCoverPhotoApi } from "../../API";
 import Dropzone from "react-dropzone";
+import { TextField, Button, Typography, Paper } from "@material-ui/core";
 
 export default function EditMovie({ history, location, match, params }) {
   const [title, setTitle] = useState(location?.state?.title);
@@ -11,10 +12,7 @@ export default function EditMovie({ history, location, match, params }) {
   const [filePath, setFilePath] = useState("");
 
   const onDrop = async (files) => {
-    console.log(files, "files upload");
-
     let formData = new FormData();
-    console.log(files[0], "files 0");
     formData.append("file", files[0]);
 
     await axios({
@@ -42,51 +40,66 @@ export default function EditMovie({ history, location, match, params }) {
     });
   };
 
-  useEffect(() => {
-    console.log(location, "location");
-    console.log(match, "match");
-    console.log(params, "params");
-  }, []);
+  const classes = useStyles();
 
   return (
-    <div className="container_addmovie">
-      <p>picture : </p>
-      <img src={location.state.picture} style={{ width: 100, height: 100 }} />
-      <label>title</label>
-      <input
-        type="text"
-        placeholder="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <label>description</label>
-      <input
-        type="text"
-        placeholder="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <p>picture of movie</p>
-      <Dropzone onDrop={(files) => onDrop(files)}>
-        {({ getRootProps, getInputProps }) => (
-          <section>
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here, or click to select files</p>
-            </div>
-          </section>
-        )}
-      </Dropzone>
-      <label>Release date</label>
-      <input
-        style={{ marginBottom: 100 }}
-        type="text"
-        placeholder="year"
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
-      />
-      <button onClick={() => handleEditMovie()}>edit movie</button>
-    </div>
+    <Paper className={classes.paper}>
+      <form
+        autoComplete="off"
+        noValidate
+        className={`${classes.root} ${classes.form}`}
+        onSubmit={handleEditMovie}
+      >
+        <Typography>MODIFIER FILM</Typography>
+        <TextField
+          name="titre"
+          variant="outlined"
+          label="titre"
+          fullWidth
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <TextField
+          name="description"
+          variant="outlined"
+          label="Title"
+          fullWidth
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <TextField
+          name="realease date"
+          variant="outlined"
+          label="Message"
+          fullWidth
+          multiline
+          rows={4}
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+        />
+        <Dropzone onDrop={(files) => onDrop(files)}>
+          {({ getRootProps, getInputProps }) => (
+            <section>
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <p> click to Modify files</p>
+              </div>
+            </section>
+          )}
+        </Dropzone>
+        <Button
+          className={classes.buttonSubmit}
+          variant="contained"
+          color="primary"
+          size="large"
+          type="submit"
+          fullWidth
+          onClick={() => handleEditMovie()}
+        >
+          MODIFIER
+        </Button>
+      </form>
+    </Paper>
   );
 }
 
