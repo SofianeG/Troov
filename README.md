@@ -1,1 +1,1 @@
-my trooc project
+Troov project
